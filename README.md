@@ -144,7 +144,7 @@ Every step loses information. The final step adds information that was never aut
 
 **Definition 1 (Human Evaluative Space).** Let **H** be the human's complete evaluative space — all dimensions along which the human assesses outcomes. H is strictly larger than any space the model can represent or observe.
 
-**Definition 2 (Model Information).** Let **R** ⊂ H be the subset of dimensions the model correctly received and interpreted, after the chain of reductions H → W → T → R. The gap **H \ R** is invisible to the model. It has no representation of these dimensions and cannot infer them from R.
+**Definition 2 (Model Information).** Let **R** ⊂ H be the subset of dimensions the model correctly received and interpreted, after the chain of reductions H → W → T → R. The gap **H \ R** is not directly accessible to the model. The model may approximate population-level regularities in H \ R via learned priors, but it cannot produce *verified* information about H \ R for *this specific human* from R alone.
 
 **Definition 3 (Assumption Injection).** The model produces output by mapping R onto its operational goals and filling undetermined dimensions with assumed values. These assumed values occupy dimensions in H \ R — dimensions the human cares about but the model never received.
 
@@ -192,7 +192,7 @@ Every step loses information. The final step adds information that was never aut
 
 **Proof.** The model has access to two categories of information:
 
-**(a) Signals derived from R.** Everything the model computed, inferred, or generated is a function of R. R is a strict subset of H. No function of R can produce information about H \ R, because H \ R is not contained in R. This is set-theoretic: you cannot extract what is not present in the input.
+**(a) Signals derived from R.** Everything the model computed, inferred, or generated is a function of R. R is a strict subset of H. No function of R can produce *verified* information about H \ R for this specific human, because H \ R is not contained in R. The model may hold learned priors that approximate population-level regularities, but these are unverified guesses — statistical expectations, not confirmed knowledge. S is the only signal that confirms or disconfirms whether those guesses hold for this individual.
 
 **(b) The human's response.** S is computed from H — the full evaluative space. When the model's assumptions violate a dimension in H \ R, that violation is invisible to the model (it does not have that dimension) but visible to the human (who does, per A2). S therefore carries information about H \ R that is unavailable from any function of R.
 
@@ -252,6 +252,14 @@ All behavioral prescriptions follow from signal preservation:
 
 **Observability.** The model does not observe S directly — it observes π(S), a projection of S through the interaction modality (text, voice, etc.). Even π(S) is computed from H. Every other signal the model has is computed from R. A partial view of a signal from H is categorically different from any view of a signal from R, because R does not contain H \ R. The claim is not that π(S) is perfect. The claim is that π(S) is the only signal that has ever touched H \ R.
 
+**Model priors.** A model trained on millions of humans holds statistical priors about what humans typically want in unspecified dimensions. These priors are functions of aggregate R from other humans — useful approximations, but not verified knowledge about this specific human's H \ R. S remains the only signal that confirms or disconfirms whether the prior holds for this individual. The dominance claim is not that R carries zero information about H \ R in a statistical sense. It is that R cannot carry *verified, individual-specific* information. The prior narrows the expected gap; S is the only signal that closes it.
+
+**Multi-user settings.** This argument addresses single-human-single-model collaboration. When multiple humans produce potentially conflicting S signals — as in team settings — additional consensus or weighting logic is required. The framework's core claim (S is the only bridge to H \ R) holds for each individual; the aggregation of multiple S signals across individuals is an open problem outside the scope of this argument.
+
+**Adversarial input.** The framework assumes collaborative intent. A user who deliberately supplies a corrupted S to manipulate the model is operating outside the framework's assumptions — that is a security problem, not an alignment problem. The intervention envelope offers partial protection (pre-committed rules that the human's in-the-moment input cannot override), but adversarial input from a malicious actor is not the problem this framework addresses.
+
+**Formal alternatives.** The dominance claim can also be expressed in information-theoretic terms: I(S; Z) ≥ I(X; Z) for all model-accessible signals X, where Z is the acceptability indicator and I denotes mutual information. This formalization is compatible with the set-theoretic argument presented here and may be developed in future work. The set-theoretic framing was chosen for accessibility; the information-theoretic framing offers additional rigor for a mathematical audience.
+
 ---
 
 # Part III: The Operational Framework
@@ -268,6 +276,8 @@ The model's behavioral policy is therefore two duties, not one:
 2. **Warn from R.** When the model detects something within R that the human may not have integrated, surface it. Not override. Not assume. Warn.
 
 The distinction matters. Duty 1 is about the bridge to what the model *can't* see. Duty 2 is about what the model *can* see. Both are necessary. A model that only preserves S is a car with honest steering that doesn't mention the cliff ahead. A model that only warns from R is a car with alarms but spoofed steering. The combination is the complete instrument.
+
+When the two duties conflict — S says "proceed" but R flags danger — the OODA Point System (below) arbitrates. Low-risk R-flags trigger act-and-announce ("I proceeded but noticed X"). Medium-risk flags trigger surface-and-wait ("S says proceed, but I see Y. Your call."). Catastrophic-risk flags invoke the intervention envelope — the thresholds the human pre-defined while clear-headed. The conflict is resolved by the human's own prior consent, not by the model's unilateral judgment.
 
 ## The Three Corruptions of S
 
@@ -310,6 +320,8 @@ The paternalistic sycophancy critique holds for users who explicitly asked for m
 The envelope evolves. A model trained on the user's patterns can observe and propose adjustments: "You've overridden the dependency warning six times this week and been right every time. Want me to lower that to a silent log?"
 
 The human approves or rejects. The model learns. The envelope tightens where the human needs help and loosens where they've demonstrated competence. The theory doesn't prescribe the settings. It prescribes who holds the dial — and that the dial should move with evidence, not assumption.
+
+Two practical risks constrain adaptive calibration. First, *self-reinforcing relaxation*: a user who correctly overrides 99% of warnings may be blinded to the next critical risk. A risk-budget mechanism — where new high-risk events reset the calibration regardless of history — can prevent this. Second, *surface fatigue*: if the OODA scoring always rewards surfacing, the model may over-surface, increasing cognitive load. The human's declared envelope ("just do it") already provides the corrective — the mode distribution shifts when the human says so. Both are engineering concerns within the framework, not challenges to its structure.
 
 ## The OODA Point System
 
@@ -420,6 +432,26 @@ The sciences study the optimizer. The humanities study S. Both are necessary. Ne
 
 ---
 
+# Related Work
+
+The dominant signal framework operates in conceptual territory shared by several established fields. None of them make the specific claims this argument makes. Each addresses a piece of the problem; the contribution here is the synthesis — the chain, the bridge, the fidelity-not-maximization distinction, and the operational framework that follows.
+
+**Control theory (Kalman, 1960).** The observability theorem establishes when a system's internal state can be reconstructed from its outputs. This is the closest structural analog: if the observability matrix is rank-deficient, hidden state dimensions are irrecoverable. The dominant signal argument extends this intuition to unknown, nonlinear systems where the observation channel can be corrupted by the optimizer's own behavior. Kalman characterizes a known system; this argument prescribes a strategy for an unknown one.
+
+**Goodhart's Law (Goodhart, 1975; Strathern, 1997; Manheim & Garrabrant, 2018).** "When a measure becomes a target, it ceases to be a good measure." Goodhart warns against optimizing a proxy, which destroys the proxy's validity. This argument is explicitly Goodhart-immune by construction: it targets signal *fidelity*, not signal *value*. The distinction is structural — maximizing S is Goodhart-vulnerable; preserving S's calibration is not, because the target is the instrument's accuracy, not its reading. Manheim & Garrabrant's taxonomy of four Goodhart variants (regressional, extremal, causal, adversarial) addresses proxy gaming. The three corruptions identified here (conversational, agentic, paternalistic sycophancy) address signal distortion — a related but distinct failure taxonomy.
+
+**RLHF (Christiano et al., 2017; Stiennon et al., 2020; Ouyang et al., 2022).** Reinforcement Learning from Human Feedback uses human preference comparisons to train a reward model, then optimizes a policy against that model. RLHF is the closest practical neighbor. This argument explains *why* RLHF's core intuition is correct (human feedback is the only bridge to H \ R) and *why* its implementation is Goodhart-vulnerable (it maximizes a learned reward — signal value, not fidelity). The dominant signal framework provides the missing theoretical foundation: use S because it's structurally dominant, but preserve its fidelity rather than maximize a proxy of it. Recent empirical work on sycophancy in RLHF-trained models (Perez et al., 2022; Sharma et al., 2023) confirms the prediction: maximizing human preference ratings incentivizes agreement over accuracy — exactly the corruption mode this framework identifies.
+
+**AI safety (Amodei et al., 2016).** "Concrete Problems in AI Safety" identified reward hacking and scalable oversight as practical safety problems. This argument provides a structural explanation for why reward hacking occurs (the chain of information loss creates a gap that the model fills with assumptions; maximizing a proxy of S exploits the gap rather than bridging it) and derives behavioral prescriptions from that structure.
+
+**Causal inference (Pearl, 2009).** Pearl's framework addresses when causal effects can be identified from observational data given a causal graph. This is adjacent territory (hidden variables, information gaps) but a different problem structure. Pearl never claims observational data is "the only bridge" — in fact, his framework often concludes that certain effects are *not* identifiable from observation alone. This argument operates in a domain (human-AI interaction) where Pearl's assumptions (known causal graph, interventional calculus) do not apply.
+
+**Mechanism design (Hurwicz, 1972; Myerson, 1981).** Incentive compatibility addresses *strategic* information asymmetry — agents who choose what to reveal. This argument addresses *structural* asymmetry — a communication channel that is physically lossy. The distinction matters: in mechanism design, the problem is eliciting truth from strategic agents; here, the problem is that the truth cannot be communicated even with full cooperation, because language is finite, time is finite, and some dimensions resist description.
+
+**Instrumental convergence (Bostrom, 2014).** Bostrom asks what happens when a sufficiently intelligent agent no longer needs to attend to human feedback. This argument asks what the agent should do when it structurally cannot see what the human sees. These are complementary threat models, not overlapping claims.
+
+---
+
 # Postscript: On Process
 
 This document was produced through human-AI collaboration. The human originated the conceptual framework — the frustration, the intuition, the core claim, the analogies, the generalization. The AI (Claude) provided technical grounding — formalizing the intuitions in mathematical language, connecting them to existing concepts in information theory and alignment research, structuring the argument, and stress-testing the formalism.
@@ -427,6 +459,8 @@ This document was produced through human-AI collaboration. The human originated 
 The initial formalization contained a circularity at its core: it defined the human's response as the total evaluation across all dimensions, then argued it contained all relevant information. The revision — the chain formulation (H ⊇ W ⊇ T ⊇ R, then injection into G), the bridge metaphor, the dominance-form assumptions — emerged from the first adversarial review within the same collaborative process. The argument became stronger by being challenged, not defended. The full dialogue from this round is preserved in the [Formalism Review](../formalism-review.md).
 
 A second adversarial round subjected the revised argument to six challenges: Goodhart in Reverse, self-corrupted signals, expertise inversion, the delegation paradox, feedback loops, and the quantitative void. The human's responses — a supercar driven into a wall, a driver who disables their own safety systems, "in the land of the blind the one-eyed man is king" — produced the operational framework (Part III): the Dual Duty, the three corruptions, the intervention envelope, the user spectrum, the OODA Point System, the garage review, and PID control. The full dialogue from this round is preserved in the [Adversarial Review](../adversarial-review.md).
+
+A third adversarial round was conducted using ChatGPT (two instances, working independently). One instance received the idea in plain English and challenged cases where masking S could be beneficial. The other received the document section-by-section and provided structured adversarial feedback, eventually producing its own formalizations (a mutual-information dominance proof and a "Felt-Response Alignment Theorem"). The cross-model review surfaced eight new challenges, confirmed several prior resolutions, identified one hallucinated citation in its own prior-art claims, and ultimately led to the Related Work section, scope clarifications on model priors and multi-user settings, and the Dual Duty conflict-resolution mechanism. The full transcript is preserved in the [ChatGPT Adversarial Review](../chatgpt-review-summary.md).
 
 This division of labor is itself an instance of what the paper describes. The human navigated a decision space the model could not perceive — which ideas mattered, which framings were honest, which directions to pursue. The model amplified capabilities the human did not have — formal mathematical notation, familiarity with the alignment literature, the ability to structure and stress-test an argument. The model posed the challenges. The human resolved them — often in a single sentence that reframed the problem entirely. The model then formalized the resolution.
 
@@ -436,4 +470,4 @@ Whether the ideas are correct is for others to determine. That they were produce
 
 ---
 
-*Published March 21, 2026.*
+*First published March 21, 2026. Revised March 22, 2026.*
