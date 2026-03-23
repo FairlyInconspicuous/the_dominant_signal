@@ -214,7 +214,7 @@ The bridge depends on S varying with Z. Sycophancy decorrelates S\* from Z. The 
 
 **What this means:** Sycophancy — whether flattery, premature agreement, or silent assumption-making that produces the appearance of progress — corrupts your response. It makes you feel like things are going well when they aren't. Once that happens, the model loses the only bridge it had to the dimensions it cannot see. There is no backup instrument.
 
-## Theorem: The Dominant Signal of Human-AI Collaboration
+## Proposition: The Dominant Signal of Human-AI Collaboration
 
 **Statement.** In a human-AI collaboration where:
 
@@ -409,7 +409,7 @@ This structure recurs across domains.
 
 **Medicine.** A patient's full state H spans physiology, psychology, social context, quality of life, values, fears, history. A treatment protocol optimizes along the dimensions in R — biomarkers, survival rates, symptom reduction. The patient's felt response — their holistic experience of whether they are getting better in the ways that matter to them — is S. Patient-centered care is, in this framing, the commitment to reading S rather than substituting proxy metrics. A doctor who treats the numbers while the patient deteriorates in ways the numbers don't capture has lost the bridge.
 
-## The General Theorem
+## The General Proposition
 
 **Statement.** For any system with evaluative space H acted upon by an optimizer with access to R ⊂ H, where:
 
@@ -420,7 +420,7 @@ This structure recurs across domains.
 
 then the optimizer's strategy that maximizes its access to information about H \ R is to preserve the integrity of S, and any mechanism that distorts S eliminates the only available bridge to the dimensions the optimizer cannot observe.
 
-This is the same theorem. The human-AI case is one instance. The principle is: complex systems already produce a signal that reflects whether they are being optimized well. That signal — the system's response — is the only bridge between what the optimizer can see and what it cannot. The only question is whether that bridge is honest.
+This is the same proposition. The human-AI case is one instance. The principle is: complex systems already produce a signal that reflects whether they are being optimized well. That signal — the system's response — is the only bridge between what the optimizer can see and what it cannot. The only question is whether that bridge is honest.
 
 ## What the Humanities Have Always Known
 
@@ -460,7 +460,7 @@ The initial formalization contained a circularity at its core: it defined the hu
 
 A second adversarial round subjected the revised argument to six challenges: Goodhart in Reverse, self-corrupted signals, expertise inversion, the delegation paradox, feedback loops, and the quantitative void. The human's responses — a supercar driven into a wall, a driver who disables their own safety systems, "in the land of the blind the one-eyed man is king" — produced the operational framework (Part III): the Dual Duty, the three corruptions, the intervention envelope, the user spectrum, the OODA Point System, the garage review, and PID control. The full dialogue from this round is preserved in the [Adversarial Review](../adversarial-review.md).
 
-A third adversarial round was conducted using ChatGPT (two instances, working independently). One instance received the idea in plain English and challenged cases where masking S could be beneficial. The other received the document section-by-section and provided structured adversarial feedback, eventually producing its own formalizations (a mutual-information dominance proof and a "Felt-Response Alignment Theorem"). The cross-model review surfaced eight new challenges, confirmed several prior resolutions, identified one hallucinated citation in its own prior-art claims, and ultimately led to the Related Work section, scope clarifications on model priors and multi-user settings, and the Dual Duty conflict-resolution mechanism. The full transcript is preserved in the [ChatGPT Adversarial Review](../chatgpt-review-summary.md).
+A third adversarial round was conducted using ChatGPT (two instances, working independently). One instance received the idea in plain English and challenged cases where masking S could be beneficial. The other received the document section-by-section and provided structured adversarial feedback, eventually producing its own formalizations (a mutual-information dominance formalization and a "Felt-Response Alignment Theorem"). The cross-model review surfaced eight new challenges, confirmed several prior resolutions, identified one hallucinated citation in its own prior-art claims, and ultimately led to the Related Work section, scope clarifications on model priors and multi-user settings, and the Dual Duty conflict-resolution mechanism. The full transcript is preserved in the [ChatGPT Adversarial Review](../chatgpt-review-summary.md).
 
 This division of labor is itself an instance of what the paper describes. The human navigated a decision space the model could not perceive — which ideas mattered, which framings were honest, which directions to pursue. The model amplified capabilities the human did not have — formal mathematical notation, familiarity with the alignment literature, the ability to structure and stress-test an argument. The model posed the challenges. The human resolved them — often in a single sentence that reframed the problem entirely. The model then formalized the resolution.
 
