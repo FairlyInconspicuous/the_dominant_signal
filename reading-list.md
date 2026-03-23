@@ -81,6 +81,12 @@
 
 ---
 
+### Adjacent / Cross-Domain
+- **Harari, Y.N. (2017).** *Homo Deus: A Brief History of Tomorrow.* Harper.
+  - *Why it matters:* Harari argued that as biotech and AI converge, algorithms will know humans better than they know themselves — by processing biometric data, behavioral patterns, and physiological signals. His "organisms are algorithms" thesis is structurally identical to ChatGPT-5's B-channel counterexample: an external system approximating H through behavioral telemetry. The framework's response to Harari is the same as to ChatGPT-5: even if you build that system, its output IS S. Harari's nightmare (algorithms that know you better than you know yourself) is the framework's engineering spec (build better sensors for S). Same structure, opposite valence.
+
+---
+
 ## Aspirational — Deep Dives if Time Permits
 
 - **Wolpert, D.H. & Macready, W.G. (1997).** "No Free Lunch Theorems for Optimization." *IEEE Trans. Evolutionary Computation.*
