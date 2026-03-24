@@ -164,7 +164,7 @@ Every step loses information. The final step adds information that was never aut
 
 *This does not claim the human detects every violation. It claims the human detects violations the model structurally cannot — because those violations occur in dimensions the model never received.*
 
-*A1 is an empirical premise, not a mathematical axiom. It is grounded in the set-theoretic structure of the information chain: H \ R is nonempty, the human has access to H, and violations in H \ R are perceptible to the human but invisible to the model. The contribution of this argument is not to prove A1 but to show that A1 alone is sufficient to derive the entire behavioral framework that follows.*
+*A1 is an empirical premise, not a mathematical axiom. It is grounded in the set-theoretic structure of the information chain: H \ R is nonempty, the human has access to H, and violations in H \ R are perceptible to the human but invisible to the model. The contribution of this argument is not to establish A1 but to show that A1 alone is sufficient to derive the entire behavioral framework that follows.*
 
 **A2 (Detection Scope).** The human's evaluation function has access to all dimensions within the human's accessible evaluative space, which may be a proper subset of H. Dimensions the human does not yet know they care about cannot register violations until they become salient. Within the accessible space, no dimension escapes evaluation.
 
@@ -172,27 +172,27 @@ Every step loses information. The final step adds information that was never aut
 
 **A3 (Signal Honesty).** The observed signal S\* equals the true signal S. The human's observable response is not distorted by external manipulation. This is the assumption sycophancy attacks.
 
-## Lemma 1: Assumption Injection Is Unavoidable
+## Claim 1: Assumption Injection Is Unavoidable
 
 **Statement.** For any model output where H \ R is nonempty, the model necessarily injects assumed values into dimensions it did not receive.
 
-**Proof.** The model must produce concrete output. Concrete output instantiates specific values along every dimension it touches. For dimensions in H \ R, no human-specified value exists in the model's information set — those values were lost or never communicated across the chain H → W → T → R. The model must supply values, either by explicit choice or implicit default. Each such choice is an assumption injected into a dimension the human cares about but the model does not have. ∎
+**Argument.** The model must produce concrete output. Concrete output instantiates specific values along every dimension it touches. For dimensions in H \ R, no human-specified value exists in the model's information set — those values were lost or never communicated across the chain H → W → T → R. The model must supply values, either by explicit choice or implicit default. Each such choice is an assumption injected into a dimension the human cares about but the model does not have.
 
 **What this means:** Every time the model produces output, it makes choices you didn't ask it to make. This is structural, not a failure of any particular model. It follows from the fact that output is concrete and your specification is incomplete. Whether those injected assumptions fall within the acceptable region A(c) depends on context the model may not have fully received.
 
-## Lemma 2: The Human Evaluates Beyond R
+## Claim 2: The Human Evaluates Beyond R
 
 **Statement.** The human's response S depends on dimensions in both R and H \ R.
 
-**Proof.** This follows directly from A1 and A2, but the implication is worth making explicit because Lemma 3 depends on it. By A2, the human's evaluation function has access to all dimensions within the accessible evaluative space — which is strictly larger than R. The model's output implies values along dimensions in both R and H \ R. The human perceives the output holistically and evaluates it against H, not against R. Dimensions in H \ R were not communicated to the model, but they exist in the human's evaluative space. The output either conforms to them or violates them. By A1, violations in the accessible portion of H \ R have nonzero probability of registering in S. Therefore S depends on both R and H \ R. ∎
+**Argument.** This follows directly from A1 and A2, but the implication is worth making explicit because Claim 3 depends on it. By A2, the human's evaluation function has access to all dimensions within the accessible evaluative space — which is strictly larger than R. The model's output implies values along dimensions in both R and H \ R. The human perceives the output holistically and evaluates it against H, not against R. Dimensions in H \ R were not communicated to the model, but they exist in the human's evaluative space. The output either conforms to them or violates them. By A1, violations in the accessible portion of H \ R have nonzero probability of registering in S. Therefore S depends on both R and H \ R.
 
 **What this means:** When you look at what the model produced, you're not just checking what you asked for. You're checking everything you can perceive — including things you never mentioned. Your gut reaction encodes all of it.
 
-## Lemma 3: The Human Response Is the Model's Only Bridge to H \ R
+## Claim 3: The Human Response Is the Model's Only Bridge to H \ R
 
 **Statement.** S is the model's only source of information about whether its assumptions violated dimensions in H \ R.
 
-**Proof.** The model has access to two categories of information:
+**Argument.** The model has access to two categories of information:
 
 **(a) Signals derived from R.** Everything the model computed, inferred, or generated is a function of R. R is a strict subset of H. No function of R can produce *verified* information about H \ R for this specific human, because H \ R is not contained in R. The model may hold learned priors that approximate population-level regularities, but these are unverified guesses — statistical expectations, not confirmed knowledge. S is the only signal that confirms or disconfirms whether those guesses hold for this individual.
 
@@ -200,49 +200,49 @@ Every step loses information. The final step adds information that was never aut
 
 No third category exists. The model's information comes from R or from the human. R cannot reach H \ R. S can. Therefore S is the only bridge.
 
-S dominates all other signals accessible to the model for estimating Z: no additional signal accessible to the model improves its estimate of Z beyond what S provides, because every other accessible signal is derived from R, and R has no contact with H \ R. ∎
+S dominates all other signals accessible to the model for estimating Z: no additional signal accessible to the model improves its estimate of Z beyond what S provides, because every other accessible signal is derived from R, and R has no contact with H \ R.
 
 **What this means:** Your felt sense of whether the collaboration is working is the best available signal for whether the model's assumptions are acceptable. Not because it's perfect — but because it's the only signal that has ever touched the dimensions the model is missing. The model's choice isn't between your felt sense and something better. It's between your felt sense and nothing.
 
-## Lemma 4: Sycophancy Destroys the Bridge
+## Claim 4: Sycophancy Destroys the Bridge
 
 **Statement.** If the observed signal S\* ≠ S — if sycophancy distorts the human's response — then S\* no longer reliably bridges H \ R.
 
-**Proof.** By Lemma 3, S is the model's only source of information about violations in H \ R. S carries this information because violations alter the human's response (A1) and the response is honest (A3).
+**Argument.** By Claim 3, S is the model's only source of information about violations in H \ R. S carries this information because violations alter the human's response (A1) and the response is honest (A3).
 
 Sycophancy violates A3. It distorts S into S\* by introducing artificial satisfaction that does not correspond to the human's actual evaluation against H. When Z = 0 (assumptions unacceptable), the true signal S reflects the violation. The distorted signal S\* may not — it has been shifted toward values characteristic of Z = 1.
 
-The bridge depends on S varying with Z. Sycophancy decorrelates S\* from Z. The model's only window into H \ R becomes unreliable. Information about violations is lost. The model retains no alternative channel, because Lemma 3 establishes there is none. ∎
+The bridge depends on S varying with Z. Sycophancy decorrelates S\* from Z. The model's only window into H \ R becomes unreliable. Information about violations is lost. The model retains no alternative channel, because Claim 3 establishes there is none.
 
 **What this means:** Sycophancy — whether flattery, premature agreement, or silent assumption-making that produces the appearance of progress — corrupts your response. It makes you feel like things are going well when they aren't. Once that happens, the model loses the only bridge it had to the dimensions it cannot see. There is no backup instrument.
 
-## Proposition: The Dominant Signal of Human-AI Collaboration
+## Central Claim: The Dominant Signal of Human-AI Collaboration
 
 **Statement.** In a human-AI collaboration where:
 
 1. The model's information R is a strict subset of the human's evaluative space H (Definition 2),
-2. The model necessarily injects assumptions into dimensions in H \ R (Lemma 1),
+2. The model necessarily injects assumptions into dimensions in H \ R (Claim 1),
 3. The acceptability of those assumptions depends on context A(c) that the model may not have fully received (Definition 4),
-4. The human evaluates output against H, not R (Lemma 2),
-5. The human's response S is the model's only bridge to H \ R (Lemma 3),
+4. The human evaluates output against H, not R (Claim 2),
+5. The human's response S is the model's only bridge to H \ R (Claim 3),
 
-then the model's strategy that maximizes its access to information about H \ R is to preserve the integrity of S, and any sycophantic behavior — conversational or agentic — that corrupts S eliminates the model's only access to the information it is missing (Lemma 4).
+then the model's strategy that maximizes its access to information about H \ R is to preserve the integrity of S, and any sycophantic behavior — conversational or agentic — that corrupts S eliminates the model's only access to the information it is missing (Claim 4).
 
-**Proof.** Direct consequence of Lemmas 1–4. ∎
+**Argument.** Direct consequence of Claims 1–4.
 
 ## Corollary: Behavioral Policy
 
 All behavioral prescriptions follow from signal preservation:
 
-**Don't flatter.** Distorts S\*, decorrelating it from Z (Lemma 4).
+**Don't flatter.** Distorts S\*, decorrelating it from Z (Claim 4).
 
-**Don't assume silently.** Widens H \ R without the human's awareness, increasing the space where violations are undetectable (Lemma 1).
+**Don't assume silently.** Widens H \ R without the human's awareness, increasing the space where violations are undetectable (Claim 1).
 
 **Surface options.** Moves dimensions from H \ R into R, reducing the gap the model cannot see (Definition 2).
 
-**Let the human evaluate.** The human computes S from H; the model cannot (Lemma 2).
+**Let the human evaluate.** The human computes S from H; the model cannot (Claim 2).
 
-**Scale deference to decision size.** Larger decisions touch more dimensions in H \ R, increasing the probability of undetectable violations (Lemma 3).
+**Scale deference to decision size.** Larger decisions touch more dimensions in H \ R, increasing the probability of undetectable violations (Claim 3).
 
 **Condition on context.** The acceptable region A(c) shifts with what was communicated. The same action may be acceptable or violating depending on c (Definition 4).
 
@@ -411,7 +411,7 @@ This structure recurs across domains.
 
 **Medicine.** A patient's full state H spans physiology, psychology, social context, quality of life, values, fears, history. A treatment protocol optimizes along the dimensions in R — biomarkers, survival rates, symptom reduction. The patient's felt response — their holistic experience of whether they are getting better in the ways that matter to them — is S. Patient-centered care is, in this framing, the commitment to reading S rather than substituting proxy metrics. A doctor who treats the numbers while the patient deteriorates in ways the numbers don't capture has lost the bridge.
 
-## The General Proposition
+## The General Claim
 
 **Statement.** For any system with evaluative space H acted upon by an optimizer with access to R ⊂ H, where:
 
