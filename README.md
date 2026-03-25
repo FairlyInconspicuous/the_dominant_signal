@@ -4,7 +4,7 @@
 
 ## A Theory of Reductive Optimization in Complex Systems
 
-**Derek Leuridan** | Independent Research | March 2026
+**Inconspicuous** | Independent Research | March 2026
 
 ---
 
