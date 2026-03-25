@@ -81,6 +81,62 @@
 
 ---
 
+### Gut Feeling / Intuition Formalized
+- **Damasio, A. (1994).** *Descartes' Error: Emotion, Reason, and the Human Brain.* G.P. Putnam's Sons.
+  - *Why it matters:* The Somatic Marker Hypothesis — emotions and bodily states are not noise interfering with reasoning, they are compressed evaluations that pre-filter the decision space based on accumulated experience. Patients with intact logic but damaged somatic markers (vmPFC lesions) become catastrophically poor decision-makers. Functionally similar to our S: the human's nervous system has already integrated more dimensions than deliberation can hold. Damasio's framing is neuroanatomical, not information-theoretic — he doesn't position it as a signal for an external optimizer.
+
+- **Gigerenzer, G. (2007).** *Gut Feelings: The Intelligence of the Unconscious.* Penguin.
+  - *Why it matters:* Argues gut feelings are ecologically rational — fast, frugal heuristics that exploit environmental structure and can outperform complex analytical methods. Direct counter to Kahneman's "biases" framing. Closer to our position: the gut integrates more than analysis can. A simple 3-step checklist outperformed a 19-point statistical model for triaging heart attack patients. But like Damasio, Gigerenzer frames gut feeling as internal navigation, not as a communication channel to an external agent.
+
+- **Klein, G. (1998).** *Sources of Power: How People Make Decisions.* MIT Press.
+  - *Why it matters:* The Recognition-Primed Decision model — experts bypass deliberative option comparison and instead pattern-match against compiled experience, then mentally simulate. What feels like "gut instinct" is rapid pattern recognition. Relevant to our user spectrum: the expert's S is higher quality than the novice's S because it draws on a deeper pattern library. RPD research dates to late 1980s; this book is the landmark reference.
+
+- **Slovic, P., Finucane, M.L., Peters, E., & MacGregor, D.G. (2002).** "The Affect Heuristic." In Gilovich, Griffin, & Kahneman (Eds.), *Heuristics and Biases.* Cambridge University Press. (Empirical basis: Finucane et al., 2000, *Journal of Behavioral Decision Making.*)
+  - *Why it matters:* People judge risks and benefits by consulting an automatic emotional impression, not by weighing probabilities. If you feel good about something, you judge it low-risk/high-benefit. Formalizes "How do I feel about it?" as a real evaluation channel. Establishes that human evaluative responses carry structured information about the environment even when they don't follow formal probabilistic reasoning.
+
+### Hubris Formalized
+- **Roll, R. (1986).** "The Hubris Hypothesis of Corporate Takeovers." *The Journal of Business*, 59(2), 197-216.
+  - *Why it matters:* Acquirers overestimate their ability to extract value because they assume their information set is complete — they treat R as H. Structurally identical to our injection step: the optimizer fills H \ R with assumptions and doesn't know it's doing so. The acquirer's premium is the cost of hubris — the gap between what they thought they knew and what they actually knew.
+
+- **Hayward, M.L.A. & Hambrick, D.C. (1997).** "Explaining the Premiums Paid for Large Acquisitions: Evidence of CEO Hubris." *Administrative Science Quarterly*, 42(1), 103-127.
+  - *Why it matters:* Empirical confirmation of Roll. Three hubris proxies — recent performance, media praise, CEO self-importance — all predict overpayment. Effect is stronger with weak boards and CEO-chair duality (fewer checks on the optimizer). Maps to our framework: less S feedback = more unchecked assumption injection = worse outcomes.
+
+### Consciousness as Lossy Projection / The Recursive Chain
+- **Norretranders, T. (1998).** *The User Illusion: Cutting Consciousness Down to Size.* Penguin. (Original Danish edition 1991.)
+  - *Why it matters:* The most explicit bandwidth argument: sensory system processes ~11M bits/sec, conscious experience handles ~50 bits/sec — a ~250,000:1 compression ratio. Consciousness is a "user illusion," a simplified desktop, not the underlying computation. Uses Shannon and Kolmogorov. Popular science, not peer-reviewed formalization, but the quantitative framing is drawn from psychophysics (Zimmerman 1986/1989).
+
+- **Dehaene, S. (2014).** *Consciousness and the Brain: Deciphering How the Brain Codes Our Thoughts.* Viking. (Formal basis: Dehaene, Changeux, & Naccache, 2011.)
+  - *Why it matters:* Global Neuronal Workspace model. Consciousness is a serial bottleneck that "collapses all unconscious probabilities into a single conscious sample." Most brain computation is parallel, unconscious, and high-dimensional. Conscious access occurs through "global ignition" — a threshold-crossing event that broadcasts a compressed sample. This is structurally identical to lossy projection.
+
+- **Friston, K. (2010).** "The Free-Energy Principle: A Unified Brain Theory?" *Nature Reviews Neuroscience*, 11, 127-138.
+  - *Why it matters:* The most mathematically rigorous framework approaching the recursive claim. The brain maintains a deep hierarchical generative model; conscious experience corresponds to posterior beliefs at specific levels — compressed summaries (sufficient statistics) of the full posterior. Friston explicitly states interoceptive inference provides the basis for "gut feelings." The hierarchy is structurally a cascade of lossy projections, though Friston calls it "variational inference," not "dimensionality reduction."
+
+- **Seth, A.K. (2013).** "Interoceptive Inference, Emotion, and the Embodied Self." *Trends in Cognitive Sciences*, 17(11), 565-573.
+  - *Why it matters:* What you consciously feel is the brain's best predictive inference about interoceptive (bodily) signals — a compressed posterior estimate of a richer interoceptive signal space. Gut feelings are model predictions about bodily states, not raw readouts. Extends Friston's framework specifically to emotion and felt sense.
+
+- **Bowers, K.S., Regehr, G., Balthazard, C., & Parker, K. (1990).** "Intuition in the Context of Discovery." *Cognitive Psychology*, 22, 72-110.
+  - *Why it matters:* Empirical demonstration that unconscious "coherence detection" produces correct judgments (~80% accuracy) before the conscious mind can retrieve the solution (~20%). The gut detects patterns across a broader associative space than consciousness can access or articulate. Direct evidence for the bandwidth gap applied to intuition specifically.
+
+- **Wilson, T.D. & Schooler, J.W. (1991).** "Thinking Too Much: Introspection Can Reduce the Quality of Preferences and Decisions." *Journal of Personality and Social Psychology*, 60(2), 181-192.
+  - *Why it matters:* Forcing people to articulate reasons for their preferences *destroyed the signal*. Gut-based judgments correlated r=.55 with expert ratings; deliberation dropped this to r=.11. This is a direct empirical analog to sycophancy: extracting explicit reasons substitutes a low-dimensional proxy for the high-dimensional integral, corrupting S. Implication for the framework: over-surfacing or demanding justification from the human can itself corrupt S.
+
+- **Nisbett, R.E. & Wilson, T.D. (1977).** "Telling More Than We Can Know: Verbal Reports on Mental Processes." *Psychological Review*, 84(3), 231-259.
+  - *Why it matters:* People have little or no direct introspective access to their higher-order cognitive processes. When asked why they decided something, they confabulate — constructing plausible theories rather than accessing actual processing. Demonstrates that conscious access to the computation is not merely lossy but can be entirely disconnected from the actual process. ~2,600+ citations.
+
+- **Carruthers, P. (2011).** *The Opacity of Mind: An Integrative Theory of Self-Knowledge.* Oxford University Press.
+  - *Why it matters:* ISA (Interpretive Sensory-Access) theory — introspective access is interpretive, not transparent. The conscious mind *interprets* its own states the same way it interprets other people's — by observing behavior and constructing a model. The human doesn't read H directly; the human interprets H through a lossy, constructive process. Strongest philosophical formalization of bounded self-knowledge.
+
+- **Haidt, J. (2001).** "The Emotional Dog and Its Rational Tail." *Psychological Review*, 108(4), 814-834.
+  - *Why it matters:* Social Intuitionist Model — moral judgments are driven by rapid automatic intuitions; conscious moral reasoning is predominantly post-hoc rationalization. The "rider" (conscious mind) constructs justifications for where the "elephant" (unconscious evaluation) already went. Exactly the recursive structure: S_source computes the judgment; S_felt delivers the verdict; S_articulated fabricates the reasoning.
+
+### Preference Construction
+- **Slovic, P. & Lichtenstein, S. (1971).** "Comparison of Bayesian and Regression Approaches to the Study of Information Processing in Judgment." *Organizational Behavior and Human Performance*, 6(6), 649-744. (See also: Slovic, P. (1995). "The Construction of Preference." *American Psychologist*, 50(5), 364-371.)
+  - *Why it matters:* Preferences are constructed at the time of elicitation, not retrieved from a stable internal store. The human doesn't have pre-formed access to their own H — they build a lossy approximation of it on demand, influenced by framing, context, and elicitation method. This means even the human's relationship to their own evaluative space is mediated by a constructive, lossy process.
+
+### Replication Warnings
+- **Dijksterhuis, A. & Nordgren, L.F. (2006).** "Unconscious Thought Theory." — Claims unconscious thought handles more dimensions than conscious thought. **Substantially failed to replicate** (Nieuwenstein et al., 2015; large-scale replication d = -0.01). Do not cite as evidence.
+- **Iowa Gambling Task timing claims** (Bechara et al.) — SCR effect is real but small (r = .10-.22). Maia & McClelland (2004) showed participants had more conscious knowledge than originally measured. Core phenomenon survives; specific timing claims weakened.
+
 ### Adjacent / Cross-Domain
 - **Harari, Y.N. (2017).** *Homo Deus: A Brief History of Tomorrow.* Harper.
   - *Why it matters:* Harari argued that as biotech and AI converge, algorithms will know humans better than they know themselves — by processing biometric data, behavioral patterns, and physiological signals. His "organisms are algorithms" thesis is structurally identical to ChatGPT-5's B-channel counterexample: an external system approximating H through behavioral telemetry. The framework's response to Harari is the same as to ChatGPT-5: even if you build that system, its output IS S. Harari's nightmare (algorithms that know you better than you know yourself) is the framework's engineering spec (build better sensors for S). Same structure, opposite valence.
@@ -116,4 +172,4 @@ These citations appeared in the ChatGPT adversarial review and are **fabricated 
 - **(paywall)** — Behind an academic paywall; may require institutional access or Sci-Hub.
 - **(free)** — Freely available online.
 
-*Last updated: 2026-03-22. Updated as new relevant works are identified. Hyperlink resolution is a background task — content and context come first.*
+*Last updated: 2026-03-24. Updated as new relevant works are identified. Hyperlink resolution is a background task — content and context come first.*
