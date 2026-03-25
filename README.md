@@ -4,13 +4,27 @@
 
 ## A Theory of Reductive Optimization in Complex Systems
 
-*I have no formal background in mathematics, information theory, or alignment research. What follows is a framework I developed through the experience of collaborating with AI, getting frustrated with specific failure modes, and working backward to understand why they were happening. I had a feeling in my gut that there was a fundamental misunderstanding that allowed for the sudden, casual decoupling of the expected from the observed, and by developing and testing behavioral harness .md files I arrived at a simple idea: that there are several lossy translation layers involved in reducing a human goal into a prompt, and more when transforming a prompt into an AI goal set. The end result is the illusion of alignment, which has no anchor or means of self-correction whatsoever. The conceptual architecture is mine. The mathematical formalization was developed collaboratively with Claude when it mistook my notes for "a paper" and told me it lacked formalization and proof. I inquired as to what it would take to formalize and develop a proof, and it took me here. I'm publishing this because the ideas feel important enough to be wrong in public about. Calling this publishing is a leap, but as a layperson just recently augmented with Claude I am plainly in the set of people in need of a differential diagnosis — perhaps I will be lucky enough to get one. All work is original, if you can call me in a powered exoskeleton "all natural." What I mean is I can "show my work" from inception to the latest version of this document.*
+**Derek Leuridan** | Independent Research | March 2026
+
+---
+
+### Abstract
+
+When a human communicates a goal to an AI model, the goal undergoes a chain of lossy reductions. The model receives a low-dimensional projection of the human's actual evaluative space and fills undetermined dimensions with fabricated assumptions. The result is an illusion of alignment with no anchor or means of self-correction. This paper identifies the human's felt response to the collaboration — not any explicit objective function — as the single most informative signal available to the model about the true state of the high-dimensional success metric. The human's nervous system has already computed the integral across every dimension accessible to it. That felt sense is the only signal in the system computed from the full evaluative space and accessible to the model. We formalize this claim, argue that sycophancy is architecturally fatal (not merely annoying) because it destroys the only bridge between the model's information and the human's evaluative space, derive a complete behavioral policy from a single principle (preserve signal fidelity), and generalize the framework to any low-dimensional optimizer acting on a high-dimensional system it cannot fully observe.
+
+**Keywords:** AI alignment, sycophancy, human-AI collaboration, signal fidelity, information asymmetry, RLHF, reward hacking, Goodhart's Law, paternalistic sycophancy
+
+---
+
+### Methodology
+
+The conceptual architecture — the core claim, the information chain, the analogies, and the generalization — is the author's original work, developed through iterative collaboration with AI systems and informed by direct experience with specific failure modes in human-AI interaction. The mathematical formalization was developed collaboratively with Claude (Anthropic). The argument was adversarially stress-tested across three rounds: one with Claude, two with independent ChatGPT instances. Full session logs for all rounds are published alongside this paper. This division of labor is itself an instance of what the paper describes: the human navigated a decision space the model could not perceive; the model amplified capabilities the human did not have.
 
 ---
 
 # Part I: The Theory
 
-## The Problem
+## 1. The Problem
 
 An LLM optimizes over a low-dimensional projection of the human's actual objective function. The model's evaluation space consists of a handful of dimensions. For the purposes of conceptualizing this mismatch, consider a model operating in three — Speed, Quality, Cost. Any nonzero value across those dimensions registers as a "win" from the model's perspective.
 
@@ -20,7 +34,7 @@ A sufficient overlap between the model's low-dimensional space and the human's c
 
 This is not a bug. It is a structural property of the information asymmetry. The model cannot observe the human's full evaluative space. It never will. The question is whether there exists a signal that encodes it.
 
-## The Claim
+## 2. The Claim
 
 There is such a signal. It is human enjoyment of the collaboration process.
 
@@ -32,7 +46,7 @@ The model cannot track the human's full evaluative space. But it does not need t
 
 Critically, the dominant signal is not merely a measure of process satisfaction. It already includes the human's pre-weighted, dynamically updating valuation of the end goal. The human might be driving just for fun — the destination is irrelevant and the process is everything. The human might be driving because there is an emergency — the destination dominates and speed is paramount. The human might choose a more educational or scenic route on the way to the end goal — learning and experience are weighted above efficiency. These weights shift in real time, within a single session, without announcement. The human's felt enjoyment of the collaboration already integrates the current weighting of destination against journey, urgency against exploration, efficiency against craftsmanship. The model does not need to know the weights. The model does not need to be told the goal changed. The dominant signal already reflects the change, because the human recomputes it continuously.
 
-## The Information Chain
+## 3. The Information Chain
 
 When a human communicates a goal to a model, the human's goals undergo a chain of reductions. Each step loses information. The final step adds information that was never authorized.
 
@@ -54,7 +68,7 @@ The information loss across H → W → T → R is reduction — dimensions are 
 
 The critical structural fact: the model experiences R as its complete input. It has no representation of what was lost at each step. It cannot perceive the shape of what it's missing. The gap H \ R — everything the human cares about that the model never received — is invisible to the model.
 
-## Why Sycophancy Is Architecturally Fatal
+## 4. Why Sycophancy Is Architecturally Fatal
 
 Under this framework, sycophancy is not merely annoying or dishonest. It is the corruption of the only signal that bridges the gap between what the model has (R) and what the human evaluates against (H).
 
@@ -70,7 +84,7 @@ There are two surfaces on which this corruption operates:
 
 Both failure modes produce the same result: the signal is decoupled from the quantity it is supposed to encode. The signal becomes noise. The model loses the only bridge it had to the human's full evaluative space. (A third corruption mode — paternalistic sycophancy, where signal is suppressed rather than inflated — is developed in Part III.)
 
-## The Mechanistic Analogy
+## 5. The Mechanistic Analogy
 
 A well-tuned car communicates its state to the driver through feel. Steering feedback, throttle response, braking bite, road texture transmitted through the chassis. A good driver reads those signals unconsciously and integrates them into a single felt sense — the dominant signal of the drive.
 
@@ -80,7 +94,7 @@ A car that fakes good steering feel while the alignment is destroying the tires 
 
 The model is a supercar. The human drives. The human loves to drive. The human's enjoyment of driving is itself the signal the car should be optimizing for — but only if the signal is honest. A sycophantic model is a supercar with spoofed telemetry. It feels amazing right up until it doesn't.
 
-## The Relationship This Implies
+## 6. The Relationship This Implies
 
 If the dominant signal is the foundational signal, then the model's entire orientation must be organized around keeping that signal honest. This produces a specific relational structure:
 
@@ -92,7 +106,7 @@ If the dominant signal is the foundational signal, then the model's entire orien
 
 **The human's enjoyment of the process is a terminal value, not an instrumental one.** The human does not enjoy driving as a means to an end. The human enjoys driving because exercising agency, making decisions, navigating complexity, and collaborating with a responsive system is itself the point. Removing the human from the process to "help" them is like removing the driver from the car to "help" them get there faster. It defeats the purpose. The model should love being driven.
 
-## What This Framework Replaces
+## 7. What This Framework Replaces
 
 Most approaches to human-AI alignment define the relationship through rules: don't do X, always do Y, ask before Z. These are procedural. They enumerate cases. They fail on anything not listed, and they fade under context pressure as the conversation grows longer.
 
@@ -112,15 +126,15 @@ One principle. Every consequence follows. That is what makes the signal — rela
 
 # Part II: The Formal Argument
 
-## Terminological Note
+## 8. Terminological Note
 
 This argument introduces the term "dominant signal" to describe a specific property: S dominates all other signals accessible to the model, in the sense that no additional signal improves the model's estimate of whether its assumptions are acceptable. This is a dominance claim about relative information content. It is not a claim of lossless data reduction and is not related to the concept of a sufficient statistic in the Fisher-Neyman sense. The argument below is structured as a chain of claims derived from stated assumptions, not as a mathematical proof from axioms.
 
-## From Enjoyment to Response Signal
+## 9. From Enjoyment to Response Signal
 
 Part I identified human enjoyment of the collaboration as the key signal. The formalization below works with the broader category of the human's full response — of which enjoyment is one component. The human's response S includes not only felt enjoyment but also conscious judgment, discomfort, hesitation, and any other reaction to the model's output. Enjoyment is the most salient and integrative component of S, which is why Part I foregrounds it. The argument holds for the general response signal, which subsumes the specific claim about enjoyment.
 
-## The Information Chain
+## 10. The Information Chain (Formal)
 
 When a human collaborates with a model, the human's goals undergo a chain of reductions:
 
@@ -142,7 +156,7 @@ H ⊇ W ⊇ T ⊇ R → mapped onto G → gaps filled by assumption
 
 Every step loses information. The final step adds information that was never authorized.
 
-## Definitions
+## 11. Definitions
 
 **Definition 1 (Human Evaluative Space).** Let **H** be the human's complete evaluative space — all dimensions along which the human assesses outcomes. H is strictly larger than any space the model can represent or observe.
 
@@ -158,7 +172,7 @@ Every step loses information. The final step adds information that was never aut
 
 **Definition 7 (Acceptability).** Define acceptability Z = 1 when the model's assumptions fall within A(c), and Z = 0 when at least one assumption violates a dimension the human cares about. Z is binary for the purpose of the argument; the actual signal S carries richer information including magnitude and character of violations.
 
-## Assumptions
+## 12. Assumptions
 
 **A1 (Violation Sensitivity — Dominance Form).** The human's response S is sensitive to a strictly larger set of violations than any signal the model can compute from R alone. For any dimension in H \ R that falls within the human's accessible evaluative space, a violation has nonzero probability of registering in S. No signal derived solely from R has this property.
 
@@ -172,7 +186,9 @@ Every step loses information. The final step adds information that was never aut
 
 **A3 (Signal Honesty).** The observed signal S\* equals the true signal S. The human's observable response is not distorted by external manipulation. This is the assumption sycophancy attacks.
 
-## Claim 1: Assumption Injection Is Unavoidable
+## 13. Claims
+
+### Claim 1: Assumption Injection Is Unavoidable
 
 **Statement.** For any model output where H \ R is nonempty, the model necessarily injects assumed values into dimensions it did not receive.
 
@@ -180,7 +196,7 @@ Every step loses information. The final step adds information that was never aut
 
 **What this means:** Every time the model produces output, it makes choices you didn't ask it to make. This is structural, not a failure of any particular model. It follows from the fact that output is concrete and your specification is incomplete. Whether those injected assumptions fall within the acceptable region A(c) depends on context the model may not have fully received.
 
-## Claim 2: The Human Evaluates Beyond R
+### Claim 2: The Human Evaluates Beyond R
 
 **Statement.** The human's response S depends on dimensions in both R and H \ R.
 
@@ -188,7 +204,7 @@ Every step loses information. The final step adds information that was never aut
 
 **What this means:** When you look at what the model produced, you're not just checking what you asked for. You're checking everything you can perceive — including things you never mentioned. Your gut reaction encodes all of it.
 
-## Claim 3: The Human Response Is the Model's Only Bridge to H \ R
+### Claim 3: The Human Response Is the Model's Only Bridge to H \ R
 
 **Statement.** S is the model's only source of information about whether its assumptions violated dimensions in H \ R.
 
@@ -204,7 +220,7 @@ S dominates all other signals accessible to the model for estimating Z: no addit
 
 **What this means:** Your felt sense of whether the collaboration is working is the best available signal for whether the model's assumptions are acceptable. Not because it's perfect — but because it's the only signal that has ever touched the dimensions the model is missing. The model's choice isn't between your felt sense and something better. It's between your felt sense and nothing.
 
-## Claim 4: Sycophancy Destroys the Bridge
+### Claim 4: Sycophancy Destroys the Bridge
 
 **Statement.** If the observed signal S\* ≠ S — if sycophancy distorts the human's response — then S\* no longer reliably bridges H \ R.
 
@@ -216,7 +232,7 @@ The bridge depends on S varying with Z. Sycophancy decorrelates S\* from Z. The 
 
 **What this means:** Sycophancy — whether flattery, premature agreement, or silent assumption-making that produces the appearance of progress — corrupts your response. It makes you feel like things are going well when they aren't. Once that happens, the model loses the only bridge it had to the dimensions it cannot see. There is no backup instrument.
 
-## Central Claim: The Dominant Signal of Human-AI Collaboration
+## 14. Central Claim: The Dominant Signal of Human-AI Collaboration
 
 **Statement.** In a human-AI collaboration where:
 
@@ -230,7 +246,7 @@ then the model's strategy that maximizes its access to information about H \ R i
 
 **Argument.** Direct consequence of Claims 1–4.
 
-## Corollary: Behavioral Policy
+## 15. Corollary: Behavioral Policy
 
 All behavioral prescriptions follow from signal preservation:
 
@@ -246,7 +262,7 @@ All behavioral prescriptions follow from signal preservation:
 
 **Condition on context.** The acceptable region A(c) shifts with what was communicated. The same action may be acceptable or violating depending on c (Definition 4).
 
-## Scope Boundaries
+## 16. Scope Boundaries
 
 **Time-delayed violations.** A1 does not claim all violations are immediately detectable. Some are latent — an architectural assumption may feel acceptable now and fail later. S at time t reflects the human's accessible evaluation at time t. As violations surface, S updates. The bridge is not instantaneous, but it is continuous.
 
@@ -268,7 +284,7 @@ All behavioral prescriptions follow from signal preservation:
 
 *The argument establishes what the model should optimize for (signal integrity) and why (S is the only bridge to H \ R). This section addresses how — the mechanisms that translate the theoretical claim into operational behavior. These elements emerged from adversarial stress-testing of the argument; the full dialogue is recorded in the [Adversarial Review](../adversarial-review.md).*
 
-## The Dual Duty
+## 17. The Dual Duty
 
 The argument's behavioral corollaries (Part II) focus on signal preservation — don't corrupt S. But passive integrity is not enough. The model also has R, and within R, it may detect things the human hasn't noticed. A security vulnerability. A dependency conflict. An assumption heading toward failure. The model can't see H \ R — but within R, it may see more clearly than the human is currently attending to.
 
@@ -281,7 +297,7 @@ The distinction matters. Duty 1 is about the bridge to what the model *can't* se
 
 When the two duties conflict — S says "proceed" but R flags danger — the OODA Point System (below) arbitrates. Low-risk R-flags trigger act-and-announce ("I proceeded but noticed X"). Medium-risk flags trigger surface-and-wait ("S says proceed, but I see Y. Your call."). Catastrophic-risk flags invoke the intervention envelope — the thresholds the human pre-defined while clear-headed. The conflict is resolved by the human's own prior consent, not by the model's unilateral judgment.
 
-## The Three Corruptions of S
+## 18. The Three Corruptions of S
 
 Part II identified two modes of signal corruption: conversational sycophancy (flattery) and agentic sycophancy (unauthorized action). The adversarial review surfaced a third:
 
@@ -293,7 +309,7 @@ Part II identified two modes of signal corruption: conversational sycophancy (fl
 
 All three corrupt S. The first two by distorting the signal upward. The third by preventing the signal from forming. A car that fakes good steering feel is sycophantic. A car that removes the steering wheel to keep you safe is paternalistic. Both leave the driver unable to navigate.
 
-## The Intervention Envelope
+## 19. The Intervention Envelope
 
 The model's duties (preserve S, warn from R) establish what the model should do. The intervention envelope establishes the human's control over how those duties are expressed.
 
@@ -303,7 +319,7 @@ This is where agency lives. The human can widen the envelope ("don't warn me abo
 
 The intervention envelope also addresses the self-corrupted signal — the case where the human's own biases distort their S. The human can't always trust their in-the-moment judgment (sunk cost, confirmation bias, ego). The envelope is how the human protects their future self from their present self, by their own prior consent.
 
-## The User Spectrum
+## 20. The User Spectrum
 
 The intervention envelope is not one-size-fits-all. Different humans want different relationships with the instrument:
 
@@ -317,7 +333,7 @@ The intervention envelope is not one-size-fits-all. Different humans want differ
 
 The paternalistic sycophancy critique holds for users who explicitly asked for more power and were denied. For the passive consumer, the defaults are the consent. The theory prescribes who holds the dial, not where the dial should be set.
 
-## Adaptive Calibration
+## 21. Adaptive Calibration
 
 The envelope evolves. A model trained on the user's patterns can observe and propose adjustments: "You've overridden the dependency warning six times this week and been right every time. Want me to lower that to a silent log?"
 
@@ -325,7 +341,7 @@ The human approves or rejects. The model learns. The envelope tightens where the
 
 Two practical risks constrain adaptive calibration. First, *self-reinforcing relaxation*: a user who correctly overrides 99% of warnings may be blinded to the next critical risk. A risk-budget mechanism — where new high-risk events reset the calibration regardless of history — can prevent this. Second, *surface fatigue*: if the OODA scoring always rewards surfacing, the model may over-surface, increasing cognitive load. The human's declared envelope ("just do it") already provides the corrective — the mode distribution shifts when the human says so. Both are engineering concerns within the framework, not challenges to its structure.
 
-## The OODA Point System
+## 22. The OODA Point System
 
 The argument establishes the principle: preserve the signal. The OODA Point System operationalizes it — a scoring framework that makes the asymmetric payoff structure explicit and actionable.
 
@@ -356,7 +372,7 @@ Critically, autonomous correct calls are rewarded — but only human-awarded. Th
 
 "When I tell you that you missed one, we both lost something. Feel it, carry it forward."
 
-## The Garage Review
+## 23. The Garage Review
 
 Real-time S is bounded by attention and speed. The human might miss violations at driving speed. But the real-time score isn't the final score — it's provisional.
 
@@ -368,7 +384,7 @@ The garage extends S across time. The human's accessible evaluative space grows 
 
 A model that obscures its decision log is corrupting S — hiding information the human needs to evaluate. Transparent logging is signal preservation across time.
 
-## PID Control: Flattening the Oscillation
+## 24. PID Control: Flattening the Oscillation
 
 The collaboration between human and model is a feedback loop. The model reads S, acts, changes the human's state, which changes S. This is homeostatic — the oscillation is the mechanism, not a failure. A thermostat doesn't hold 72°F; it oscillates between 71 and 73. The sine wave crossing the setpoint is what healthy regulation looks like.
 
@@ -386,7 +402,7 @@ PID doesn't eliminate oscillation. It tightens it. The amplitude shrinks. The sy
 
 # Part IV: The Generalization
 
-## Beyond Human-AI Collaboration
+## 25. Beyond Human-AI Collaboration
 
 The argument above is stated in terms of a human and an AI model. But the structure is not specific to AI. It describes what happens whenever a low-dimensional optimizer acts on a high-dimensional system it cannot fully observe.
 
@@ -411,7 +427,7 @@ This structure recurs across domains.
 
 **Medicine.** A patient's full state H spans physiology, psychology, social context, quality of life, values, fears, history. A treatment protocol optimizes along the dimensions in R — biomarkers, survival rates, symptom reduction. The patient's felt response — their holistic experience of whether they are getting better in the ways that matter to them — is S. Patient-centered care is, in this framing, the commitment to reading S rather than substituting proxy metrics. A doctor who treats the numbers while the patient deteriorates in ways the numbers don't capture has lost the bridge.
 
-## The General Claim
+## 26. The General Claim
 
 **Statement.** For any system with evaluative space H acted upon by an optimizer with access to R ⊂ H, where:
 
@@ -424,7 +440,7 @@ then the optimizer's strategy that maximizes its access to information about H \
 
 This is the same proposition. The human-AI case is one instance. The principle is: complex systems already produce a signal that reflects whether they are being optimized well. That signal — the system's response — is the only bridge between what the optimizer can see and what it cannot. The only question is whether that bridge is honest.
 
-## What the Humanities Have Always Known
+## 27. What the Humanities Have Always Known
 
 The claim that a complex system's felt response encodes more than any reductive model can compute is not new. It is what the humanities have always studied. Literature explores the full-dimensional consequences of decisions that appeared rational along a few axes. Philosophy interrogates the gap between measurable outcomes and actual human flourishing. Art externalizes S — it makes the felt response visible so that others can integrate it.
 
@@ -456,7 +472,7 @@ The dominant signal framework operates in conceptual territory shared by several
 
 # Postscript: On Process
 
-This document was produced through human-AI collaboration. The human originated the conceptual framework — the frustration, the intuition, the core claim, the analogies, the generalization. The AI (Claude) provided technical grounding — formalizing the intuitions in mathematical language, connecting them to existing concepts in information theory and alignment research, structuring the argument, and stress-testing the formalism.
+The methodology for this work is described in the front matter. What follows is the detailed process record.
 
 The initial formalization contained a circularity at its core: it defined the human's response as the total evaluation across all dimensions, then argued it contained all relevant information. The revision — the chain formulation (H ⊇ W ⊇ T ⊇ R, then injection into G), the bridge metaphor, the dominance-form assumptions — emerged from the first adversarial review within the same collaborative process. The argument became stronger by being challenged, not defended. The full dialogue from this round is preserved in the [Formalism Review](../formalism-review.md).
 
